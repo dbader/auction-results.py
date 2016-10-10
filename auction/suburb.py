@@ -47,7 +47,7 @@ class Suburb:
             self.heading = thead_rows[0]
         else:
             # no result for this suburb.
-            body.append("<p>There were no results for {suburb_name}.</p>".format(
+            body.append('<p>There were no results for {suburb_name}.</p>'.format(
                 suburb_name=self.name))
 
         # go through each property in the suburb.
@@ -106,10 +106,10 @@ class Suburb:
     def get_rendered_body(self, separator=None):
         rendered_body = ''
 
-        if None == separator:
+        if separator is None:
             separator = ''
 
-        if None != self.body:
+        if self.body is not None:
             rendered_body = separator.join(self.body)
 
         return rendered_body
@@ -128,7 +128,7 @@ class Suburb:
 
     def _process_property_feature(self, type, bs_tag):
         feature = {'bs_tag': bs_tag}
-        feature = {}
+        feature = {}  #?
         heading = data = attachment = None
 
         html_template = (

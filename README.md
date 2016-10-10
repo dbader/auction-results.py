@@ -12,10 +12,20 @@
         - equivalent packages should also work on other distros.
         - lxml may failed to install on osx, if so try:
             - `STATIC_DEPS=true LIBXML2_VERSION=2.9.2 pip install lxml==3.5.0`
+            - Alternatively you can install lxml dependencies through Homebrew:
+              `brew install libxml2 libxslt`
             - see also:
                 - http://louistiao.me/posts/installing-lxml-on-mac-osx-1011-inside-a-virtualenv-with-pip/
                 - https://bugs.launchpad.net/lxml/+bug/1503807
                 - http://lxml.de/installation.html#source-builds-on-macos-x
+
+
+## How to run tests
+
+```sh
+pip install requirements-dev.txt
+py.test -v --ignore=venv --flake8
+```
 
 ## license
 

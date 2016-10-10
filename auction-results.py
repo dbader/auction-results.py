@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 
-import yaml
 import smtplib
 import requests
 import urllib.error
 import auction.suburb
 
+from configparsing import load_config, InvalidConfig
+
 
 def main():
-    # load config.
     try:
-        with open('config.yaml', 'r') as config_file:
-            config = yaml.load(config_file)
-    except (OSError, IOError):
-        print('failed reading config.yaml. :-(')
-        exit(1)
+        config = load_config('config.yaml')
+    except InvalidConfig as exc:
+        print('Invalid or missing config:', exc)
+        return 1
 
     # initialise global settings.
     auction.suburb.Suburb.baseurl = config['baseurl']
@@ -63,5 +62,7 @@ def main():
             s.quit()
             print('\n'.join(results))
 
+    return 0
+
 if __name__ == '__main__':
-    main()
+    exit(main())
